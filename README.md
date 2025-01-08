@@ -1,1 +1,1 @@
-# ghostcms-loader
+package/README.md
