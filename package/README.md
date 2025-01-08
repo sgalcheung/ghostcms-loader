@@ -46,7 +46,7 @@ const settings = await getEntry('ghostSettings', 'settings');
 
 ## Changelog
 
-See the [Changelog](./CHANGELOG.md) for the change history of this loader.
+See the [Changelog](https://github.com/MatthiesenXYZ/ghostcms-loader/blob/main/package/CHANGELOG.md) for the change history of this loader.
 
 ## Contribution
 
