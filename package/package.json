@@ -16,6 +16,22 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
+    },
+    "./api": {
+      "types": "./dist/api.d.ts",
+      "default": "./dist/api.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "default": "./dist/types.js"
+    },
+    "./schemas": {
+      "types": "./dist/schemas/index.d.ts",
+      "default": "./dist/schemas/index.js"
+    },
+    "./loaders": {
+      "types": "./dist/loaders/index.d.ts",
+      "default": "./dist/loaders/index.js"
     }
   },
   "files": [
@@ -31,7 +47,6 @@
     "vite": "^6.0.0"
   },
   "dependencies": {
-    "@ts-ghost/core-api": "^6.1.0",
     "@ts-ghost/content-api": "^4.1.0"
   },
   "devDependencies": {

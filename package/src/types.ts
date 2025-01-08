@@ -49,6 +49,32 @@ export type CollectionConfig<S extends BaseSchema> =
 	| DataCollectionConfig<S>
 	| ContentLayerConfig<S>;
 
+export type LoaderCollectionOpts = {
+	/**
+	 * The URL of your Ghost CMS instance
+	 *
+	 * @example
+	 * 'https://demo.ghost.io'
+	 *
+	 */
+	ghostUrl: string;
+	/**
+	 * The version of the Ghost Content API to use
+	 *
+	 * @example
+	 * 'v5.0'
+	 *
+	 * @default 'v5.0'
+	 */
+	apiVersion?: `v5.${string}`;
+	/**
+	 * DO NOT USE THIS, THIS IS UNSAFE AND MEANT FOR INTERNAL USE ONLY/TESTING
+	 *
+	 * Set your api key in your .env file as `GHOST_CONTENT_API_KEY`
+	 */
+	__DO_NOT_USE__API_KEY?: string;
+};
+
 export type LoaderCollection = {
 	ghostAuthors: CollectionConfig<typeof authorsSchema>;
 	ghostPages: CollectionConfig<typeof pagesSchema>;

@@ -51,7 +51,7 @@ export default async function build(...args) {
 	const date = dt.format(new Date());
 
 	const noClean = args.includes('--no-clean-dist');
-	const noBundle = args.includes('--no-bundle');
+	const bundle = args.includes('--bundle');
 	const forceCJS = args.includes('--cjs');
 
 	const {
@@ -80,8 +80,8 @@ export default async function build(...args) {
 		console.log(`${dim(`[${date}]`)} Building... ${dim(`(${entryPoints.length} files found)`)}`);
 		await esbuild.build({
 			...config,
-			bundle: !noBundle,
-			external: !noBundle
+			bundle,
+			external: bundle
 				? [...Object.keys({ ...peerDependencies, ...dependencies, ...imports }), 'astro:content']
 				: undefined,
 			entryPoints,
