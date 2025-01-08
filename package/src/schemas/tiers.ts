@@ -1,12 +1,12 @@
-import { z } from "astro/zod";
-import { ghostIdentitySchema, ghostVisibilitySchema } from "./shared.js";
+import { z } from 'astro/zod';
+import { ghostIdentitySchema, ghostVisibilitySchema } from './shared.js';
 
 export const tiersSchema = z.object({
 	...ghostIdentitySchema.shape,
 	name: z.string(),
 	description: z.string().nullable(),
 	active: z.boolean(),
-	type: z.union([z.literal("free"), z.literal("paid")]),
+	type: z.union([z.literal('free'), z.literal('paid')]),
 	welcome_page_url: z.string().nullable(),
 	created_at: z.string(),
 	updated_at: z.string().nullable(),

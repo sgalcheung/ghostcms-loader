@@ -1,5 +1,11 @@
-import { z } from "astro/zod";
-import { ghostCodeInjectionSchema, ghostIdentitySchema, ghostMetadataSchema, ghostSocialMediaSchema, ghostVisibilitySchema } from "./shared.js";
+import { z } from 'astro/zod';
+import {
+	ghostCodeInjectionSchema,
+	ghostIdentitySchema,
+	ghostMetadataSchema,
+	ghostSocialMediaSchema,
+	ghostVisibilitySchema,
+} from './shared.js';
 
 export const tagsSchema = z.object({
 	...ghostIdentitySchema.shape,
@@ -23,6 +29,6 @@ export const tagsSchema = z.object({
 export type Tag = z.infer<typeof tagsSchema>;
 
 export const tagsIncludeSchema = z.object({
-	"count.posts": z.literal(true).optional(),
+	'count.posts': z.literal(true).optional(),
 });
 export type TagsIncludeSchema = z.infer<typeof tagsIncludeSchema>;
