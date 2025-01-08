@@ -1,0 +1,20 @@
+{
+    "name": "root",
+    "private": true,
+    "scripts": {
+        "build": "pnpm --filter astro-ghostcms-loader run build"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.9.4",
+        "@biomejs/biome": "^1.9.4",
+        "@changesets/cli": "^2.27.10",
+        "@changesets/config": "^3.0.4",
+        "@changesets/changelog-github": "^0.5.0",
+        "@types/node": "^22.10.5",
+        "esbuild": "^0.24.2",
+        "pkg-pr-new": "^0.0.39",
+        "run-scripts": "workspace:*",
+        "typescript": "^5.7.2",
+        "vitest": "^2.1.8"
+    }
+  }

@@ -1,0 +1,4 @@
+packages:
+  - "package"
+  - "package/tests/fixtures/*"
+  - "scripts"
