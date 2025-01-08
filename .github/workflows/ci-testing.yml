@@ -33,6 +33,9 @@ jobs:
   
         - name: Install Tools & Dependencies
           uses: withstudiocms/automations/.github/actions/install@main
+
+        - name: Build Packages
+          run: pnpm ci:build
   
         - name: Build and Test Packages
           run: pnpm ci:test
