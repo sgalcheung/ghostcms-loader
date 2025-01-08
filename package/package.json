@@ -39,8 +39,7 @@
   ],
   "scripts": {
     "build": "run-scripts build \"src/**/*.ts\"",
-    "dev": "run-scripts dev \"src/**/*.ts\"",
-    "test": "pnpm build && vitest run"
+    "dev": "run-scripts dev \"src/**/*.ts\""
   },
   "peerDependencies": {
     "astro": "^5.0.0",
