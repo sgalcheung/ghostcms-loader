@@ -10,6 +10,8 @@ npm install astro-ghostcms-loader
 
 ## Usage
 
+### Requirements
+
 To use this loader, it is required that you be on at least Astro `v5.0.0`
 
 Also make sure to create and set your `.env` file with the following:
@@ -17,6 +19,8 @@ Also make sure to create and set your `.env` file with the following:
 ```.env
 GHOST_CONTENT_API_KEY=your_api_key_here
 ```
+
+### Config
 
 In `src/content.config.ts`, import and configure the loaderCollection:
 
@@ -30,6 +34,8 @@ export const collections = {
   }),
 }
 ```
+
+### Calling the created GhostCMS collections
 
 [Query the content collection](https://docs.astro.build/en/guides/content-collections/#querying-collections) like any other Astro content collection entry:
 
