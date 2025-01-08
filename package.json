@@ -1,6 +1,7 @@
 {
     "name": "root",
     "private": true,
+    "packageManager": "pnpm@9.5.0",
     "scripts": {
         "build": "pnpm --filter astro-ghostcms-loader build",
         "dev": "pnpm --stream --filter astro-ghostcms-loader --filter @ghostcms-loader/tests -r -parallel dev",
