@@ -24,10 +24,10 @@ In `src/content.config.ts`, import and configure the loaderCollection:
 import { GhostCMSLoaderCollection} from 'astro-ghostcms-loader';
 
 export const collections = {
-	...GhostCMSLoaderCollection({
-		ghostUrl: 'https://demo.ghost.io' // Your GhostCMS Instance URL
-        apiVersion?: 'v5.0' // OPTIONAL - Allows you to define a specific version (min: v5.0)
-	}),
+  ...GhostCMSLoaderCollection({
+    ghostUrl: 'https://demo.ghost.io' // Your GhostCMS Instance URL
+    apiVersion?: 'v5.0' // OPTIONAL - Allows you to define a specific version (min: v5.0)
+  }),
 }
 ```
 
