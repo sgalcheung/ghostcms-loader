@@ -1,4 +1,4 @@
-import { z } from "astro/zod";
+import { z } from 'astro/zod';
 
 export const settingsSchema = z.object({
 	title: z.string(),
@@ -17,13 +17,13 @@ export const settingsSchema = z.object({
 		z.object({
 			label: z.string(),
 			url: z.string(),
-		}),
+		})
 	),
 	secondary_navigation: z.array(
 		z.object({
 			label: z.string(),
 			url: z.string(),
-		}),
+		})
 	),
 	meta_title: z.string().nullable(),
 	meta_description: z.string().nullable(),
@@ -38,3 +38,7 @@ export const settingsSchema = z.object({
 });
 
 export type Settings = z.infer<typeof settingsSchema>;
+
+export const loaderSettingsSchema = settingsSchema.extend({
+	id: z.string(),
+});

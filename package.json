@@ -2,7 +2,16 @@
     "name": "root",
     "private": true,
     "scripts": {
-        "build": "pnpm --filter astro-ghostcms-loader run build"
+        "build": "pnpm --filter astro-ghostcms-loader run build",
+        "dev": "pnpm --stream --filter astro-ghostcms-loader --filter @ghostcms-loader/tests -r -parallel dev",
+        "lint": "biome check .",
+        "lint:fix": "biome check --write .",
+
+        "ci:install": "pnpm install --frozen-lockfile",
+        "ci:build": "pnpm build",
+        "ci:version": "pnpm changesets version",
+        "ci:publish": "pnpm changesets publish",
+        "ci:snapshot": "pnpx pkg-pr-new publish --pnpm './package'"
     },
     "dependencies": {
         "@astrojs/check": "^0.9.4",

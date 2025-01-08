@@ -6,10 +6,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MatthiesenXYZ/astro-ghostcms-loader.git",
+    "url": "git+https://github.com/MatthiesenXYZ/ghostcms-loader.git",
     "directory": "package"
   },
-  "bugs": "https://github.com/MatthiesenXYZ/astro-ghostcms-loader/issues",
+  "bugs": "https://github.com/MatthiesenXYZ/ghostcms-loader/issues",
   "homepage": "https://matthiesen.dev",
   "main": "./dist/index.js",
   "exports": {
