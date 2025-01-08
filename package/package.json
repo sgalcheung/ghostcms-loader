@@ -12,6 +12,12 @@
   "bugs": "https://github.com/MatthiesenXYZ/ghostcms-loader/issues",
   "homepage": "https://matthiesen.dev",
   "main": "./dist/index.js",
+  "keywords": [
+    "astro",
+    "withastro",
+    "ghostcms",
+    "astro-loader"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
