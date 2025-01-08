@@ -1,10 +1,14 @@
 ---
-import { Debug } from 'astro:components';
 import Layout from '../../layouts/layout.astro';
 import { getCollection } from 'astro:content';
 
 const pages = await getCollection('ghostPages');
 ---
 <Layout title="Basic">
-    <Debug pages={pages} />
+    { pages.splice(0, 2).map((page) => (
+        <div>
+            <h2>{ page.data.title }</h2>
+            <p>{ page.data.excerpt }</p>
+        </div>
+    ))}
 </Layout>
