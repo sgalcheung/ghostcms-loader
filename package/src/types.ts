@@ -78,6 +78,7 @@ export type LoaderCollectionOpts = {
 	 *
 	 */
 	ghostUrl: string;
+
 	/**
 	 * The version of the Ghost Content API to use
 	 *
@@ -87,6 +88,7 @@ export type LoaderCollectionOpts = {
 	 * @default 'v5.0'
 	 */
 	apiVersion?: `v5.${string}`;
+
 	/**
 	 * DO NOT USE THIS, THIS IS UNSAFE AND MEANT FOR INTERNAL USE ONLY/TESTING
 	 *
