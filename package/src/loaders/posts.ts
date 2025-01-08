@@ -1,6 +1,8 @@
 import type { TSGhostContentAPI } from '@ts-ghost/content-api';
 import type { Loader, LoaderContext } from 'astro/loaders';
 import { postsSchema, type Post } from '../schemas/index.js';
+import { logger } from '../utils.js';
+import { AstroError } from 'astro/errors';
 
 export function PostsLoader(api: TSGhostContentAPI<`v5.${string}`>): Loader {
 	return {
@@ -8,7 +10,17 @@ export function PostsLoader(api: TSGhostContentAPI<`v5.${string}`>): Loader {
 		schema: postsSchema,
 		load: async ({ store, parseData }: LoaderContext) => {
 			const posts: Post[] = [];
-			let cursor = await api.posts.browse().include({ authors: true, tags: true }).paginate();
+
+			logger.log('Fetching posts from Ghost Content API');
+
+			let cursor = await api.posts
+				.browse()
+				.include({ authors: true, tags: true })
+				.paginate()
+				.catch((err) => {
+					logger.error(`Failed to fetch authors from Ghost Content API: ${err}`);
+					throw new AstroError('Failed to fetch authors from Ghost Content API', err);
+				});
 			if (cursor.current.success) posts.push(...cursor.current.data);
 			while (cursor.next) {
 				cursor = await cursor.next.paginate();
@@ -25,6 +37,8 @@ export function PostsLoader(api: TSGhostContentAPI<`v5.${string}`>): Loader {
 					rendered: { html: parsedPost.html },
 				});
 			}
+
+			logger.success('Fetched posts from Ghost Content API');
 		},
 	};
 }

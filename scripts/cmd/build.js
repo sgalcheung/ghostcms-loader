@@ -27,7 +27,7 @@ const dtsGen = {
 			const date = dt.format(new Date());
 			console.log(`${dim(`[${date}]`)} Generating TypeScript declarations...`);
 			try {
-				execSync('tsc --emitDeclarationOnly -p tsconfig.json --outDir ./dist');
+				execSync('tsc --emitDeclarationOnly -p tsconfig.json');
 				console.log(dim(`[${date}] `) + green('√ Generated TypeScript declarations'));
 			} catch (error) {
 				console.error(dim(`[${date}] `) + red(error));

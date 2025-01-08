@@ -1,18 +1,38 @@
 import type { TSGhostContentAPI } from '@ts-ghost/content-api';
 import type { Loader, LoaderContext } from 'astro/loaders';
-import { settingsSchema } from '../schemas/index.js';
+import { loaderSettingsSchema } from '../schemas/index.js';
+import { logger } from '../utils.js';
+import { AstroError } from 'astro/errors';
+
+export const GHOST_CMS_SETTINGS_ID = 'settings';
 
 export function SettingsLoader(api: TSGhostContentAPI<`v5.${string}`>): Loader {
 	return {
 		name: 'ghostcms-settings',
-		schema: settingsSchema,
+		schema: loaderSettingsSchema,
 		load: async ({ store, parseData }: LoaderContext) => {
-			const res = await api.settings.fetch();
+			logger.log('Fetching settings from Ghost Content API');
+
+			const res = await api.settings.fetch().catch((err) => {
+				logger.error(`Failed to fetch authors from Ghost Content API: ${err}`);
+				throw new AstroError('Failed to fetch authors from Ghost Content API', err);
+			});
 			if (!res.success) {
-				throw new Error('Failed to fetch settings from Ghost Content API');
+				throw new AstroError(
+					'Failed to fetch settings from Ghost Content API',
+					res.errors.join(', ')
+				);
 			}
-			const settings = await parseData({ id: 'settings', data: res.data });
-			store.set({ id: 'settings', data: settings });
+
+			const settings = {
+				...res.data,
+				id: GHOST_CMS_SETTINGS_ID,
+			};
+
+			const parsedSettings = await parseData({ id: settings.id, data: settings });
+			store.set({ id: parsedSettings.id, data: parsedSettings });
+
+			logger.success('Fetched settings from Ghost Content API');
 		},
 	};
 }

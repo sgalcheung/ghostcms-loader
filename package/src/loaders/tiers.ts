@@ -1,6 +1,8 @@
 import type { TSGhostContentAPI } from '@ts-ghost/content-api';
 import type { Loader, LoaderContext } from 'astro/loaders';
 import { tiersSchema, type Tier } from '../schemas/index.js';
+import { logger } from '../utils.js';
+import { AstroError } from 'astro/errors';
 
 export function TiersLoader(api: TSGhostContentAPI<`v5.${string}`>): Loader {
 	return {
@@ -8,10 +10,17 @@ export function TiersLoader(api: TSGhostContentAPI<`v5.${string}`>): Loader {
 		schema: tiersSchema,
 		load: async ({ store, parseData }: LoaderContext) => {
 			const tiers: Tier[] = [];
+
+			logger.log('Fetching tiers from Ghost Content API');
+
 			let cursor = await api.tiers
 				.browse()
 				.include({ benefits: true, monthly_price: true, yearly_price: true })
-				.paginate();
+				.paginate()
+				.catch((err) => {
+					logger.error(`Failed to fetch authors from Ghost Content API: ${err}`);
+					throw new AstroError('Failed to fetch authors from Ghost Content API', err);
+				});
 			if (cursor.current.success) tiers.push(...cursor.current.data);
 			while (cursor.next) {
 				cursor = await cursor.next.paginate();
@@ -22,6 +31,8 @@ export function TiersLoader(api: TSGhostContentAPI<`v5.${string}`>): Loader {
 				const parsedTier = await parseData({ id: tier.id, data: tier });
 				store.set({ id: parsedTier.id, data: parsedTier });
 			}
+
+			logger.success('Fetched tiers from Ghost Content API');
 		},
 	};
 }

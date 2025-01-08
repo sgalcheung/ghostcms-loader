@@ -7,6 +7,24 @@ import type {
 	tiersSchema,
 } from './schemas/index.js';
 
+export type ImageFunction = () => import('astro/zod').ZodObject<{
+	src: import('astro/zod').ZodString;
+	width: import('astro/zod').ZodNumber;
+	height: import('astro/zod').ZodNumber;
+	format: import('astro/zod').ZodUnion<
+		[
+			import('astro/zod').ZodLiteral<'png'>,
+			import('astro/zod').ZodLiteral<'jpg'>,
+			import('astro/zod').ZodLiteral<'jpeg'>,
+			import('astro/zod').ZodLiteral<'tiff'>,
+			import('astro/zod').ZodLiteral<'webp'>,
+			import('astro/zod').ZodLiteral<'gif'>,
+			import('astro/zod').ZodLiteral<'svg'>,
+			import('astro/zod').ZodLiteral<'avif'>,
+		]
+	>;
+}>;
+
 // @ts-ignore
 type BaseSchemaWithoutEffects =
 	| import('astro/zod').AnyZodObject
@@ -18,12 +36,14 @@ type BaseSchema =
 	| BaseSchemaWithoutEffects
 	| import('astro/zod').ZodEffects<BaseSchemaWithoutEffects>;
 
+export type SchemaContext = { image: ImageFunction };
+
 export type ContentLayerConfig<
 	S extends BaseSchema,
 	TData extends { id: string } = { id: string },
 > = {
 	type?: 'content_layer';
-	schema?: S;
+	schema?: S | ((context: SchemaContext) => S);
 	loader:
 		| import('astro/loaders').Loader
 		| (() =>
@@ -35,12 +55,12 @@ export type ContentLayerConfig<
 
 type DataCollectionConfig<S extends BaseSchema> = {
 	type: 'data';
-	schema?: S;
+	schema?: S | ((context: SchemaContext) => S);
 };
 
 type ContentCollectionConfig<S extends BaseSchema> = {
 	type?: 'content';
-	schema?: S;
+	schema?: S | ((context: SchemaContext) => S);
 	loader?: never;
 };
 
@@ -72,7 +92,7 @@ export type LoaderCollectionOpts = {
 	 *
 	 * Set your api key in your .env file as `GHOST_CONTENT_API_KEY`
 	 */
-	__DO_NOT_USE__API_KEY?: string;
+	__DO_NOT_USE_TESTING_ONLY__GHOST_CONTENT_API_KEY?: string;
 };
 
 export type LoaderCollection = {
