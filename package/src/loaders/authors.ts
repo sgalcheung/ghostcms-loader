@@ -1,8 +1,8 @@
 import type { TSGhostContentAPI } from '@ts-ghost/content-api';
-import type { Loader, LoaderContext } from 'astro/loaders';
-import { authorsSchema, type Author } from '../schemas/index.js';
-import { logger } from '../utils.js';
 import { AstroError } from 'astro/errors';
+import type { Loader, LoaderContext } from 'astro/loaders';
+import { type Author, authorsSchema } from '../schemas/index.js';
+import { logger } from '../utils.js';
 
 export function AuthorsLoader(api: TSGhostContentAPI<`v5.${string}`>): Loader {
 	return {

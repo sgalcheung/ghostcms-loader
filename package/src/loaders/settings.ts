@@ -1,8 +1,8 @@
 import type { TSGhostContentAPI } from '@ts-ghost/content-api';
+import { AstroError } from 'astro/errors';
 import type { Loader, LoaderContext } from 'astro/loaders';
 import { loaderSettingsSchema } from '../schemas/index.js';
 import { logger } from '../utils.js';
-import { AstroError } from 'astro/errors';
 
 export const GHOST_CMS_SETTINGS_ID = 'settings';
 

@@ -1,23 +1,23 @@
 import { defineCollection } from 'astro:content';
 import { loadEnv } from 'vite';
-import {
-	tagsSchema,
-	pagesSchema,
-	postsSchema,
-	tiersSchema,
-	authorsSchema,
-	loaderSettingsSchema,
-} from './schemas/index.js';
-import type { LoaderCollection, LoaderCollectionOpts } from './types.js';
+import { GhostCMSContentAPIFactory } from './api.js';
 import {
 	AuthorsLoader,
 	PageLoader,
 	PostsLoader,
-	TagsLoader,
 	SettingsLoader,
+	TagsLoader,
 	TiersLoader,
 } from './loaders/index.js';
-import { GhostCMSContentAPIFactory } from './api.js';
+import {
+	authorsSchema,
+	loaderSettingsSchema,
+	pagesSchema,
+	postsSchema,
+	tagsSchema,
+	tiersSchema,
+} from './schemas/index.js';
+import type { LoaderCollection, LoaderCollectionOpts } from './types.js';
 import { logger } from './utils.js';
 
 export function GhostCMSLoaderCollection({

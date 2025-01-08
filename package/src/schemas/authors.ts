@@ -1,5 +1,5 @@
-import { z } from "astro/zod";
-import { ghostIdentitySchema, ghostMetadataSchema, ghostMetaSchema } from "./shared.js";
+import { z } from 'astro/zod';
+import { ghostIdentitySchema, ghostMetaSchema, ghostMetadataSchema } from './shared.js';
 
 export const authorsSchema = z.object({
 	...ghostIdentitySchema.shape,
@@ -28,6 +28,6 @@ export const ghostFetchAuthorsSchema = z.object({
 });
 
 export const authorsIncludeSchema = z.object({
-	"count.posts": z.literal(true).optional(),
+	'count.posts': z.literal(true).optional(),
 });
 export type AuthorsIncludeSchema = z.infer<typeof authorsIncludeSchema>;

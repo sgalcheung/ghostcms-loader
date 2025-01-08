@@ -1,8 +1,14 @@
-import { z } from "astro/zod";
-import { ghostCodeInjectionSchema, ghostIdentitySchema, ghostMetadataSchema, ghostSocialMediaSchema, ghostVisibilitySchema } from "./shared.js";
+import { z } from 'astro/zod';
+import {
+	ghostCodeInjectionSchema,
+	ghostIdentitySchema,
+	ghostMetadataSchema,
+	ghostSocialMediaSchema,
+	ghostVisibilitySchema,
+} from './shared.js';
 
-import { authorsSchema } from "./authors.js";
-import { tagsSchema } from "./tags.js";
+import { authorsSchema } from './authors.js';
+import { tagsSchema } from './tags.js';
 
 const postsAuthorSchema = authorsSchema.extend({
 	url: z.string().nullish(),
@@ -12,7 +18,7 @@ export const pagesSchema = z.object({
 	...ghostIdentitySchema.shape,
 	...ghostMetadataSchema.shape,
 	title: z.string(),
-	html: z.string().catch(""),
+	html: z.string().catch(''),
 	plaintext: z.string().nullish(),
 	comment_id: z.string().nullable(),
 	feature_image: z.string().nullable(),
@@ -30,7 +36,7 @@ export const pagesSchema = z.object({
 	primary_author: postsAuthorSchema.nullish(),
 	primary_tag: tagsSchema.nullish(),
 	url: z.string(),
-	excerpt: z.string().catch(""),
+	excerpt: z.string().catch(''),
 	reading_time: z.number().optional().default(0),
 	created_at: z.string(),
 	updated_at: z.string(),
