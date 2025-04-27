@@ -1,0 +1,79 @@
+---
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>测试页面</title>
+    <style>
+      /* 基础样式 */
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+      h1 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+      }
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+      button:hover {
+        background-color: #2980b9;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HTML 测试页面</h1>
+    <p>这是一个用于测试的基础HTML页面，包含以下功能：</p>
+
+    <ul>
+      <li>响应式布局</li>
+      <li>交互按钮</li>
+      <li>动态内容显示</li>
+    </ul>
+
+    <button id="toggleBtn">点击显示/隐藏内容</button>
+
+    <div id="secretContent" class="hidden">
+      <h2>隐藏的内容 🎉</h2>
+      <p>这是通过JavaScript动态显示的内容！</p>
+      <img
+        src="https://via.placeholder.com/400x200?text=Placeholder+Image"
+        alt="示例图片"
+      />
+    </div>
+
+    <script>
+      // 简单的交互逻辑
+      document
+        .getElementById("toggleBtn")
+        .addEventListener("click", function () {
+          const content = document.getElementById("secretContent");
+          content.classList.toggle("hidden");
+
+          this.textContent = content.classList.contains("hidden")
+            ? "点击显示内容"
+            : "点击隐藏内容";
+        });
+    </script>
+  </body>
+</html>
