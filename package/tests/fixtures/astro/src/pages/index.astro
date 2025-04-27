@@ -1,8 +1,33 @@
 ---
-import Layout from '../layouts/layout.astro';
+import Layout from "../layouts/layout.astro";
 ---
+
 <Layout title="List of Current Tests">
-    <ul>
-        <li><a href="/basic">Basic</a></li>
-    </ul>
+  <ul>
+    <li><a href="/basic">Basic</a></li>
+  </ul>
+
+  <div id="result"></div>
+  <script>
+    let apiData = null;
+    let isLoading = false;
+
+    isLoading = true;
+    try {
+      const response = await fetch("/api/data");
+      apiData = await response.json();
+      if (apiData.message) {
+        const resultElem = document.getElementById("result");
+        if (resultElem) {
+          resultElem.innerHTML = `
+            <img src="${apiData.message}" alt="随机狗狗" />
+          `;
+        }
+      }
+    } catch (error) {
+      console.error("数据获取失败:", error);
+      apiData = { error: "数据获取失败" };
+    }
+    isLoading = false;
+  </script>
 </Layout>
